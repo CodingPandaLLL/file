@@ -116,7 +116,7 @@ pause
 
 ``` bash
 # 邮箱是github账号的邮箱,输入命令后一直回车即可不用输入命令
-ssh-keygen -t rsa -C "youremail@example.com"
+ssh-keygen -t rsa -C "lll_tony@163.com"
 ```
 
 2.在Windows下查看**[c盘->用户->自己的用户名->.ssh]**下是否有*"id_rsa、id_rsa.pub"*文件
