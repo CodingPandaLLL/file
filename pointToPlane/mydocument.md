@@ -93,3 +93,49 @@ insert into mysql.user(Host,User,Password) values('localhost','smartbi2',passwor
 grant all privileges on *.* to 'smartbi2'@'%' identified by 'Admin@123' with grant option;
 ```
 
+# dos命令自动提交代码
+
+``` bash
+@echo off
+echo "-------Begin-------"
+cd pointToPlane
+start cmd /C i5ting_toc -f mydocument.md  exit
+git pull origin master
+git add -A
+git commit -m "提交文件"
+git push origin master
+
+echo 退送成功
+echo "--------End!--------"
+pause
+```
+
+# github生成ssh的key
+
+1.打开**Git Bash**，在控制台中输入以下命令:
+
+``` bash
+# 邮箱是github账号的邮箱,输入命令后一直回车即可不用输入命令
+ssh-keygen -t rsa -C "youremail@example.com"
+```
+
+2.在Windows下查看**[c盘->用户->自己的用户名->.ssh]**下是否有*"id_rsa、id_rsa.pub"*文件
+
+3.登录Github。打开setting->SSH keys，点击右上角 New SSH key，把**[c盘->用户->自己的用户名->.ssh]**目录下生成好的公钥*"id_rsa.pub"*文件以文本打开复制放进 key输入框中
+
+# git push不需要输入密码
+
+每次需要输入密码的原因是使用了http的方式clone代码到本地，相应的，也是使用http的方式将代码push到服务器
+
+解决办法很简单，将http方式改为**ssh方式**即可
+
+``` bash
+# 查看当前方式
+git remote -v
+# 把http方式改为ssh方式。先移除旧的http的origin
+git remote rm origin
+# 添加新的ssh方式
+git remote add origin git@github.com:CodingPandaLLL/file.git
+```
+
+注意使用ssh提交的方式需要先在Github中设置好ssh key
