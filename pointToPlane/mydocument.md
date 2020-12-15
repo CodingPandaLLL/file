@@ -139,3 +139,10 @@ git remote add origin git@github.com:CodingPandaLLL/file.git
 ```
 
 注意使用ssh提交的方式需要先在Github中设置好ssh key
+
+# Maven安装jar到版本
+
+``` bash
+mvn install:install-file -DgroupId=smartbi -DartifactId=smartbi-SDK -Dversion=1.0 -Dpackaging=jar -Dfile=C:\codeSpace\WorkSpace\JavaWeb\smartbi\src\main\resources\lib\smartbi-SDK.jar
+```
+
