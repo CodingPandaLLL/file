@@ -146,3 +146,9 @@ git remote add origin git@github.com:CodingPandaLLL/file.git
 mvn install:install-file -DgroupId=smartbi -DartifactId=smartbi-SDK -Dversion=1.0 -Dpackaging=jar -Dfile=C:\codeSpace\WorkSpace\JavaWeb\smartbi\src\main\resources\lib\smartbi-SDK.jar
 ```
 
+# 安装RabbitMQ
+
+[安装教程RabbitMQ](https://www.cnblogs.com/JustinLau/p/11738511.html)
+
+注意：erlang官网下载很慢可以用：https://www.erlang-solutions.com/resources/download.html
+
