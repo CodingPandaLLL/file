@@ -152,3 +152,36 @@ mvn install:install-file -DgroupId=smartbi -DartifactId=smartbi-SDK -Dversion=1.
 
 注意：erlang官网下载很慢可以用：https://www.erlang-solutions.com/resources/download.html
 
+# go在项目中使用相对路径
+
+首先在获取项目路径
+
+``` go
+import (
+	"encoding/json"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"strings"
+)
+
+//获取项目路径
+func GetAppPath() string {
+	file, _ := exec.LookPath(os.Args[0])
+	path, _ := filepath.Abs(file)
+	index := strings.LastIndex(path, string(os.PathSeparator))
+	return path[:index]
+}
+```
+
+在项目中使用
+
+``` go
+	//拼接路径
+	path := filepath.Join(GetAppPath(), "config.json")
+	file, err := os.Open(path)
+	if err != nil {
+		panic(err.Error())
+	}
+```
+

@@ -150,6 +150,32 @@ git remote add origin git@github.com:CodingPandaLLL/file.git
 <h1 id="-rabbitmq">安装RabbitMQ</h1>
 <p><a href="https://www.cnblogs.com/JustinLau/p/11738511.html">安装教程RabbitMQ</a></p>
 <p>注意：erlang官网下载很慢可以用：<a href="https://www.erlang-solutions.com/resources/download.html">https://www.erlang-solutions.com/resources/download.html</a></p>
+<h1 id="go-">go在项目中使用相对路径</h1>
+<p>首先在获取项目路径</p>
+<pre><code class="lang-go">import (
+    &quot;encoding/json&quot;
+    &quot;os&quot;
+    &quot;os/exec&quot;
+    &quot;path/filepath&quot;
+    &quot;strings&quot;
+)
+
+//获取项目路径
+func GetAppPath() string {
+    file, _ := exec.LookPath(os.Args[0])
+    path, _ := filepath.Abs(file)
+    index := strings.LastIndex(path, string(os.PathSeparator))
+    return path[:index]
+}
+</code></pre>
+<p>在项目中使用</p>
+<pre><code class="lang-go">    //拼接路径
+    path := filepath.Join(GetAppPath(), &quot;config.json&quot;)
+    file, err := os.Open(path)
+    if err != nil {
+        panic(err.Error())
+    }
+</code></pre>
 
           	</article>
         </div>
