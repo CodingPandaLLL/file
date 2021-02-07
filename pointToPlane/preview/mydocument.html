@@ -176,6 +176,80 @@ func GetAppPath() string {
         panic(err.Error())
     }
 </code></pre>
+<h1 id="go-int-string-">Go语言的int和string转换</h1>
+<p>string转成int：</p>
+<pre><code class="lang-go">int, err := strconv.Atoi(string)
+</code></pre>
+<p>string转成int64：</p>
+<pre><code class="lang-go">int64, err := strconv.ParseInt(string, 10, 64)
+</code></pre>
+<p>int转成string：</p>
+<pre><code class="lang-go">string := strconv.Itoa(int)
+</code></pre>
+<p>int64转成string：</p>
+<pre><code class="lang-go">string := strconv.FormatInt(int64,10)
+</code></pre>
+<h1 id="go-">Go语言字符串分割</h1>
+<p>根据空格键进行分割</p>
+<pre><code class="lang-go">s:=&quot; ab cd          ef gh ij kl &quot;
+
+arr:=strings.Fields(s)
+
+fmt.Printf(&quot;arr:%q\n&quot;,arr)
+</code></pre>
+<p>根据某个字符串对另一个字符串进行分割</p>
+<pre><code class="lang-go">s:=&quot;iiaiibiiciiiidiiii&quot;
+
+sep:=&quot;ii&quot;
+
+arr:=strings.Split(s,sep)
+
+fmt.Println(&quot;arr:&quot;,arr)
+</code></pre>
+<p>根据单个字符进行分割</p>
+<pre><code class="lang-go">f := func(c rune) bool {
+    if c == &#39;*&#39; || c == &#39;@&#39;||c==&#39;f&#39;||c==&#39; &#39;||c==&#39;二&#39; {
+        return true
+    } else {
+        return false
+    }
+}
+s := &quot;@a*b@@c**d## e$f二%ag*&quot;
+result := strings.FieldsFunc(s, f)
+fmt.Printf(&quot;result:%q&quot;, result)
+</code></pre>
+<h1 id="typescript-">TypeScript中类型转换</h1>
+<p>表单提交时的类型不对时，可进行类型转换</p>
+<p><strong>任意类型转字符串</strong>
+String(x) （全局函数）
+x.toString()   （局限性大，2个不能用）（ts：数字转字符串，用这个）
+x + &#39;&#39; （这个更常用）</p>
+<p><strong>任意类型转布尔</strong>
+Boolean(x)  （全局函数）（ts：用这个）
+!!x  （老手用这个）</p>
+<p>但，不要总想把一些东西变成布尔，或许可以直接判断在不在：if (x!==undefined)</p>
+<p><strong>任意类型转数字</strong>
+Number(x)
+parseInt(x, 10)  (别人考，问的多) （ts:字符串转数字，用这个）
+parseFloat(x) （ts:小数就用这个）
+x - 0 （一般用这种，最常用，因为好理解）（ts禁用）
++x  （取正的意思，容易理解错）</p>
+<p><strong>对象转字符串</strong>
+JSON.stringify()</p>
+<p><strong>字符串转对象</strong>
+JSON.parse()</p>
+<h1 id="-windows-">在windows中将文件分割为多个</h1>
+<p>在git bash中用split 命令进行分割</p>
+<pre><code class="lang-bash">split -l 1000000 total_20210204182556-0.sql
+</code></pre>
+<p>分割total_20210204182556-0.sql文件，每个文件为100W行</p>
+<p>-l参数表示按照行数进行分割，即一个小文件中最多有多少行，-l number可以缩写成-number，上边的命令表示按照1000行一个小文件进行分割</p>
+<pre><code class="lang-bash">split -b 100k test.log
+</code></pre>
+<p>-b参数表示按字节大小进行分割，在数字后边要指定被分割的文件名</p>
+<pre><code class="lang-bash">split -C 100k test.log
+</code></pre>
+<p>-C参数表示按照所有行数加起来的最大字节数进行分割，同样可以使用k或者m作为单位，其实效果和上边的-b差不多。</p>
 
           	</article>
         </div>
