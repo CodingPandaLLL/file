@@ -185,3 +185,96 @@ func GetAppPath() string {
 	}
 ```
 
+# Go语言的int和string转换
+
+string转成int：
+
+```go
+int, err := strconv.Atoi(string)
+```
+
+string转成int64：
+
+```go
+int64, err := strconv.ParseInt(string, 10, 64)
+```
+
+int转成string：
+
+```go
+string := strconv.Itoa(int)
+```
+
+int64转成string：
+
+```go
+string := strconv.FormatInt(int64,10)
+```
+
+# Go语言字符串分割
+
+根据空格键进行分割
+
+```go
+s:=" ab cd          ef gh ij kl "
+
+arr:=strings.Fields(s)
+
+fmt.Printf("arr:%q\n",arr)
+```
+
+根据某个字符串对另一个字符串进行分割
+
+```go
+s:="iiaiibiiciiiidiiii"
+
+sep:="ii"
+
+arr:=strings.Split(s,sep)
+
+fmt.Println("arr:",arr)
+```
+
+根据单个字符进行分割
+
+```go
+f := func(c rune) bool {
+    if c == '*' || c == '@'||c=='f'||c==' '||c=='二' {
+        return true
+    } else {
+        return false
+    }
+}
+s := "@a*b@@c**d## e$f二%ag*"
+result := strings.FieldsFunc(s, f)
+fmt.Printf("result:%q", result)
+```
+
+# TypeScript中类型转换
+
+表单提交时的类型不对时，可进行类型转换
+
+**任意类型转字符串**
+String(x) （全局函数）
+x.toString()   （局限性大，2个不能用）（ts：数字转字符串，用这个）
+x + '' （这个更常用）
+
+**任意类型转布尔**
+Boolean(x)  （全局函数）（ts：用这个）
+!!x  （老手用这个）
+
+
+但，不要总想把一些东西变成布尔，或许可以直接判断在不在：if (x!==undefined)
+
+**任意类型转数字**
+Number(x)
+parseInt(x, 10)  (别人考，问的多) （ts:字符串转数字，用这个）
+parseFloat(x) （ts:小数就用这个）
+x - 0 （一般用这种，最常用，因为好理解）（ts禁用）
++x  （取正的意思，容易理解错）
+
+**对象转字符串**
+JSON.stringify()
+
+**字符串转对象**
+JSON.parse()
